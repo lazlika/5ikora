@@ -1,9 +1,14 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using Academy_2024.Services;
+
 
 namespace Academy_2024.Dtos
 {
     public class UserDto
     {
+
+        public string jelszo;
+
         [Key]
         public int Id { get; set; }
 
@@ -15,6 +20,11 @@ namespace Academy_2024.Dtos
         [Required]
         public string? Email { get; set; }
         [Required]
-        public string? Password { get; set; }
+        public string? Password
+        { get { return titkositas.HashSzovegMD5(jelszo); }
+            set{ jelszo=value; } }
+
+
+
     }
 }
